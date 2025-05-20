@@ -28,6 +28,21 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
+export const getUserByName = async (req: Request, res: Response) => {
+  try {
+    const name = req.params.name || "";
+    const user = await userModel.findByName(name);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving user", error });
+  }
+}
+
 export const createUser = async (req: Request, res: Response) => {
   try {
     const user: User = req.body;

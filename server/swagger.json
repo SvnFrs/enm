@@ -50,7 +50,7 @@
         }
       }
     },
-    "/users/{id}": {
+    "/users/id/{id}": {
       "get": {
         "summary": "Get user by ID",
         "parameters": [
@@ -122,6 +122,36 @@
         "responses": {
           "200": {
             "description": "User deleted successfully"
+          }
+        }
+      }
+    },
+    "/users/name/{name}": {
+      "get": {
+        "summary": "Get user by name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
           }
         }
       }

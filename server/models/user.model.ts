@@ -17,6 +17,13 @@ export class UserModel {
     return await this.collection.findOne({ _id: new ObjectId(id) });
   }
 
+  async findByName(name: string): Promise<User | null> {
+    return this.collection.findOne({
+      // Use regex to perform a case-insensitive search
+      name: { $regex: new RegExp(name, "i") }
+    })
+  }
+
   async create(user: User): Promise<User> {
     const result = await this.collection.insertOne(user);
     return { ...user, _id: result.insertedId };

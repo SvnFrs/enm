@@ -23,7 +23,7 @@ async function run() {
     console.log("Databases:", databases.databases);
 
     // Example: Insert a document
-    const user = { name: "John Doe", age: 30 };
+    const user = { name: "Thai", age: 20 };
     const result = await collection.insertOne(user);
     console.log(`Inserted document with _id: ${result.insertedId}`);
 

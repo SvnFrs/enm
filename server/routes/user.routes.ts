@@ -4,7 +4,8 @@ import {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getUserByName
 } from "../controllers/user.controller";
 
 const router = Router();
@@ -25,7 +26,9 @@ type RequestHandler = (
 
 
 router.get("/", getUsers);
-router.get("/:id", getUserById as RequestHandler);
+router.get("/id/:id", getUserById as RequestHandler);
+router.get("/name/:name", getUserByName as RequestHandler);
+
 router.post("/", createUser as RequestHandler);
 router.put("/:id", updateUser as RequestHandler);
 router.delete("/:id", deleteUser as RequestHandler);
